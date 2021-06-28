@@ -5,6 +5,8 @@ local opt = vim.opt  -- to set options
 
 -- source init.lua
 vim.api.nvim_set_keymap('n', '<leader>r', ':Reload<cr>', {noremap = true})
+-- remap jk to esc
+vim.api.nvim_set_keymap('i', 'jk', '<esc>', {noremap = true})
 
 -- plugins
 require('plugins')
