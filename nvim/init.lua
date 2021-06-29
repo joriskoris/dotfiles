@@ -48,6 +48,10 @@ lspconfig.tsserver.setup{
 lspconfig.pyright.setup{
   on_attach=require('completion').on_attach
 }
+-- terraform
+lspconfig.terraformls.setup{
+  on_attach=require('completion').on_attach
+}
 
 -- neovim-completion
 opt.completeopt=[[menuone,noinsert,noselect]]
