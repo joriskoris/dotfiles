@@ -68,3 +68,7 @@ vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<cr>', {noremap 
 
 -- which-key
 require("which-key").setup{}
+
+-- vim-terraform
+g.terraform_align = 1
+g.terraform_fmt_on_save = 1
