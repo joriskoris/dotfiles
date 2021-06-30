@@ -1,7 +1,9 @@
 local cmd = vim.cmd
+local fn = vim.fn
 
 cmd 'packadd paq-nvim'
 local paq = require('paq-nvim').paq
+paq {'savq/paq-nvim', opt = true}    -- paq-nvim manages itself
 
 -- common deps
 paq 'nvim-lua/plenary.nvim'
@@ -17,7 +19,8 @@ paq 'dense-analysis/ale'
 
 -- completion
 paq 'neovim/nvim-lspconfig'
-paq 'nvim-lua/completion-nvim'
+paq {'shougo/deoplete-lsp'}
+paq {'shougo/deoplete.nvim', run = fn['remote#host#UpdateRemotePlugins']}
 
 -- snippets
 paq 'Shougo/neosnippet.vim'
@@ -30,10 +33,7 @@ paq 'fatih/vim-go'
 paq 'hashivim/vim-terraform'
 
 -- random
-paq {'nvim-treesitter/nvim-treesitter', run=function()
-  vim.api.nvim_command('TSUpdate')
-end
-}
+paq 'nvim-treesitter/nvim-treesitter'
 
 -- fuzzy search
 paq 'nvim-lua/popup.nvim'

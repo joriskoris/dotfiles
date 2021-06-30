@@ -5,6 +5,7 @@ local opt = vim.opt  -- to set options
 
 -- source init.lua
 vim.api.nvim_set_keymap('n', '<leader>r', ':Reload<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>e', ':e $MYVIMRC<cr>', {noremap = true})
 -- remap jk to esc
 vim.api.nvim_set_keymap('i', 'jk', '<esc>', {noremap = true})
 
@@ -33,33 +34,19 @@ lspconfig.gopls.setup {
       },
       staticcheck = true,
     },
-  },
-  on_attach=require('completion').on_attach
-}
--- bash
-lspconfig.bashls.setup{
-  on_attach=require('completion').on_attach
-}
--- javascript
-lspconfig.tsserver.setup{
-  on_attach=require('completion').on_attach
-}
--- python
-lspconfig.pyright.setup{
-  on_attach=require('completion').on_attach
-}
--- terraform
-lspconfig.terraformls.setup{
-  on_attach=require('completion').on_attach
+  }
 }
 
--- neovim-completion
-opt.completeopt=[[menuone,noinsert,noselect]]
+lspconfig.terraformls.setup {}
 
--- snippets
-g.completion_enable_snippet = 'Neosnippet'
-
-
+-- completion plugins
+g.python3_host_prog = "~/.pyenv/versions/neovim/bin/python"
+g['deoplete#enable_at_startup'] = 1  -- enable deoplete at startup
+opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options (for deoplete)
+-- mappings for deoplete
+vim.api.nvim_set_keymap('i', '<C-k>', '<Plug>(neosnippet_expand_or_jump)', {noremap=false})
+vim.api.nvim_set_keymap('s', '<C-k>', '<Plug>(neosnippet_expand_or_jump)', {noremap=false})
+vim.api.nvim_set_keymap('x', '<C-k>', '<Plug>(neosnippet_expand_target)', {noremap=false})
 
 -- treesitter
 require('nvim-treesitter.configs').setup {
@@ -80,8 +67,4 @@ vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<cr>', {noremap = 
 vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<cr>', {noremap = true})
 
 -- which-key
-require("which-key").setup {
-  -- your configuration comes here
-  -- or leave it empty to use the default settings
-  -- refer to the configuration section below
-}
+require("which-key").setup{}
