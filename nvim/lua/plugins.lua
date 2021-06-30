@@ -10,17 +10,24 @@ paq 'nvim-lua/plenary.nvim'
 paq 'famiu/nvim-reload'
 
 -- theme
-paq {'dracula/vim', as='dracula'};
+paq {'dracula/vim', as='dracula'}
 
 -- linting
 paq 'dense-analysis/ale'
 
 -- completion
-paq 'neovim/nvim-lspconfig';
-paq 'nvim-lua/completion-nvim';
+paq 'neovim/nvim-lspconfig'
+paq 'nvim-lua/completion-nvim'
+
+-- snippets
+paq 'Shougo/neosnippet.vim'
+paq 'Shougo/neosnippet-snippets'
 
 -- golang
 paq 'fatih/vim-go'
+
+-- terraform
+paq 'hashivim/vim-terraform'
 
 -- random
 paq {'nvim-treesitter/nvim-treesitter', run=function()

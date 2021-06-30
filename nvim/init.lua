@@ -56,6 +56,10 @@ lspconfig.terraformls.setup{
 -- neovim-completion
 opt.completeopt=[[menuone,noinsert,noselect]]
 
+-- snippets
+g.completion_enable_snippet = 'Neosnippet'
+
+
 
 -- treesitter
 require('nvim-treesitter.configs').setup {
@@ -64,6 +68,9 @@ require('nvim-treesitter.configs').setup {
     enable = true,
     disable = { 'yaml' }
   },
+  indent = {
+    enable = true,
+  }
 }
 
 -- fuzzysearch
