@@ -38,4 +38,10 @@ require 'paq-nvim' {
   
   -- random
   'folke/which-key.nvim';
+
+  -- comments
+  'b3nj5m1n/kommentary';
+
+  -- get better at vim
+  'ThePrimeagen/vim-be-good'
 }
