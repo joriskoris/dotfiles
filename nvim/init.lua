@@ -19,7 +19,10 @@ cmd 'colorscheme dracula'
 opt.number = true
 opt.relativenumber = false
 opt.expandtab = true
-opt.smartindent = false
+opt.tabstop = 2
+opt.smartindent = true
+opt.shiftwidth = 2
+opt.wrap = false
 
 -- language server
 local lspconfig = require('lspconfig')
@@ -36,7 +39,9 @@ lspconfig.gopls.setup {
     },
   }
 }
-
+-- bash
+lspconfig.bashls.setup {}
+-- terraform
 lspconfig.terraformls.setup {}
 
 -- completion plugins
@@ -67,7 +72,15 @@ vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<cr>', {noremap = 
 vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<cr>', {noremap = true})
 
 -- which-key
-require("which-key").setup{}
+require("whichkey_setup").config{
+  hide_statusline = false,
+  default_keymap_settings = {
+    silent=true,
+    noremap=true,
+  },
+  default_mode = 'n',
+}
+
 
 -- vim-terraform
 g.terraform_align = 1
