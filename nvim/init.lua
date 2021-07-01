@@ -66,6 +66,8 @@ lspconfig.yamlls.setup {
     }
   }
 }
+-- pyright
+lspconfig.pyright.setup {}
 -- mappings for lsp
 
 -- completion plugins
