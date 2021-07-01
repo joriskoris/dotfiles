@@ -43,6 +43,7 @@ require 'paq-nvim' {
   -- random
   'folke/which-key.nvim';
   'AckslD/nvim-whichkey-setup.lua';
+  'kosayoda/nvim-lightbulb';
 
   -- comments
   'b3nj5m1n/kommentary';

@@ -9,7 +9,6 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-
 -- source init.lua
 map('n', '<leader>r', ':Reload<cr>')
 map('n', '<leader>e', ':e $MYVIMRC<cr>')
@@ -82,8 +81,7 @@ map('x', '<C-k>', '<Plug>(neosnippet_expand_target)')
 require('nvim-treesitter.configs').setup {
   ensure_installed = 'maintained',
   highlight = {
-    enable = true,
-    disable = { 'yaml' }
+    enable = true
   },
   indent = {
     enable = true,
@@ -112,3 +110,7 @@ g.terraform_fmt_on_save = 1
 
 -- comments
 require('kommentary.config').use_extended_mappings()
+
+-- lightbulb
+cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+
