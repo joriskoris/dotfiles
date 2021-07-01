@@ -38,6 +38,8 @@ opt.tabstop = 2
 opt.smartindent = true
 opt.shiftwidth = 2
 opt.wrap = false
+opt.sidescrolloff = 8
+opt.signcolumn = 'yes'
 
 -- language server
 local lspconfig = require('lspconfig')
@@ -69,15 +71,24 @@ lspconfig.yamlls.setup {
 -- pyright
 lspconfig.pyright.setup {}
 -- mappings for lsp
+map('n', '<space>,', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+map('n', '<space>;', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+map('n', '<space>d', '<cmd>lua vim.lsp.buf.definition()<CR>')
+map('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+map('n', '<space>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
+map('n', '<space>m', '<cmd>lua vim.lsp.buf.rename()<CR>')
+map('n', '<space>r', '<cmd>lua vim.lsp.buf.references()<CR>')
+map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 
 -- completion plugins
 g.python3_host_prog = '~/.pyenv/versions/neovim/bin/python'
 g['deoplete#enable_at_startup'] = 1  -- enable deoplete at startup
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options (for deoplete)
 -- mappings for deoplete
-map('i', '<C-k>', '<Plug>(neosnippet_expand_or_jump)')
-map('s', '<C-k>', '<Plug>(neosnippet_expand_or_jump)')
-map('x', '<C-k>', '<Plug>(neosnippet_expand_target)')
+map('i', '<C-k>', '<Plug>(neosnippet_expand_or_jump)', {noremap = false})
+map('s', '<C-k>', '<Plug>(neosnippet_expand_or_jump)', {noremap = false})
+map('x', '<C-k>', '<Plug>(neosnippet_expand_target)', {noremap = false})
 
 -- treesitter
 require('nvim-treesitter.configs').setup {
