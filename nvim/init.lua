@@ -3,11 +3,18 @@ local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
+local function map(mode, lhs, rhs, opts)
+  local options = {noremap = true}
+  if opts then options = vim.tbl_extend('force', options, opts) end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+
 -- source init.lua
-vim.api.nvim_set_keymap('n', '<leader>r', ':Reload<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>e', ':e $MYVIMRC<cr>', {noremap = true})
+map('n', '<leader>r', ':Reload<cr>')
+map('n', '<leader>e', ':e $MYVIMRC<cr>')
 -- remap jk to esc
-vim.api.nvim_set_keymap('i', 'jk', '<esc>', {noremap = true})
+map('i', 'jk', '<Esc>')
 
 -- plugins
 require('plugins')
@@ -43,15 +50,24 @@ lspconfig.gopls.setup {
 lspconfig.bashls.setup {}
 -- terraform
 lspconfig.terraformls.setup {}
+--
+lspconfig.yamlls.setup {
+  yaml = {
+    format = {
+      enable = true,
+    }
+  }
+}
+-- mappings for lsp
 
 -- completion plugins
 g.python3_host_prog = "~/.pyenv/versions/neovim/bin/python"
 g['deoplete#enable_at_startup'] = 1  -- enable deoplete at startup
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options (for deoplete)
 -- mappings for deoplete
-vim.api.nvim_set_keymap('i', '<C-k>', '<Plug>(neosnippet_expand_or_jump)', {noremap=false})
-vim.api.nvim_set_keymap('s', '<C-k>', '<Plug>(neosnippet_expand_or_jump)', {noremap=false})
-vim.api.nvim_set_keymap('x', '<C-k>', '<Plug>(neosnippet_expand_target)', {noremap=false})
+map('i', '<C-k>', '<Plug>(neosnippet_expand_or_jump)')
+map('s', '<C-k>', '<Plug>(neosnippet_expand_or_jump)')
+map('x', '<C-k>', '<Plug>(neosnippet_expand_target)')
 
 -- treesitter
 require('nvim-treesitter.configs').setup {
@@ -66,10 +82,10 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- fuzzysearch
-vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope live_grep<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<cr>', {noremap = true})
+map('n', '<leader>ff', ':Telescope find_files<cr>')
+map('n', '<leader>fg', ':Telescope live_grep<cr>')
+map('n', '<leader>fb', ':Telescope buffers<cr>')
+map('n', '<leader>fh', ':Telescope help_tags<cr>')
 
 -- which-key
 require("whichkey_setup").config{
@@ -80,7 +96,6 @@ require("whichkey_setup").config{
   },
   default_mode = 'n',
 }
-
 
 -- vim-terraform
 g.terraform_align = 1
