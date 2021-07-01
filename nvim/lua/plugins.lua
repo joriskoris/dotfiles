@@ -10,6 +10,10 @@ require 'paq-nvim' {
 
   -- theme
   {'dracula/vim', as='dracula'};
+  {'rafamadriz/neon', as='neon'};
+  -- statusline
+  'hoob3rt/lualine.nvim';
+  'kyazdani42/nvim-web-devicons';
 
   -- linting
   'dense-analysis/ale';

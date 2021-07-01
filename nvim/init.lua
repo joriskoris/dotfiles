@@ -21,7 +21,16 @@ require('plugins')
 
 -- main configuration
 opt.termguicolors = true
-cmd 'colorscheme dracula'
+cmd 'colorscheme neon'
+-- statusline
+require('nvim-web-devicons').setup {
+  default = true
+}
+require('lualine').setup {
+  options = {
+    theme = 'neon'
+  }
+}
 
 opt.number = true
 opt.relativenumber = false
@@ -36,7 +45,7 @@ local lspconfig = require('lspconfig')
 -- golang
 g.go_code_completion_enabled = 0
 lspconfig.gopls.setup {
-  cmd = {"gopls", "serve"},
+  cmd = {'gopls', 'serve'},
   settings = {
     gopls = {
       analyses = {
@@ -61,7 +70,7 @@ lspconfig.yamlls.setup {
 -- mappings for lsp
 
 -- completion plugins
-g.python3_host_prog = "~/.pyenv/versions/neovim/bin/python"
+g.python3_host_prog = '~/.pyenv/versions/neovim/bin/python'
 g['deoplete#enable_at_startup'] = 1  -- enable deoplete at startup
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options (for deoplete)
 -- mappings for deoplete
@@ -71,7 +80,7 @@ map('x', '<C-k>', '<Plug>(neosnippet_expand_target)')
 
 -- treesitter
 require('nvim-treesitter.configs').setup {
-  ensure_installed = "maintained",
+  ensure_installed = 'maintained',
   highlight = {
     enable = true,
     disable = { 'yaml' }
@@ -88,7 +97,7 @@ map('n', '<leader>fb', ':Telescope buffers<cr>')
 map('n', '<leader>fh', ':Telescope help_tags<cr>')
 
 -- which-key
-require("whichkey_setup").config{
+require('whichkey_setup').config{
   hide_statusline = false,
   default_keymap_settings = {
     silent=true,
