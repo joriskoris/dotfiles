@@ -10,8 +10,8 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- source init.lua
-map('n', '<leader>r', ':Reload<cr>')
-map('n', '<leader>e', ':e $MYVIMRC<cr>')
+map('n', '<leader>r', ':Reload<CR>')
+map('n', '<leader>e', ':e $MYVIMRC<CR>')
 -- remap jk to esc
 map('i', 'jk', '<Esc>')
 
@@ -39,7 +39,6 @@ opt.smartindent = true
 opt.shiftwidth = 2
 opt.wrap = false
 opt.sidescrolloff = 8
-opt.signcolumn = 'yes'
 
 -- language server
 local lspconfig = require('lspconfig')
@@ -56,6 +55,9 @@ lspconfig.gopls.setup {
     },
   }
 }
+
+cmd [[autocmd FileType go setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
+
 -- bash
 lspconfig.bashls.setup {}
 -- terraform
@@ -102,10 +104,10 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- fuzzysearch
-map('n', '<leader>ff', ':Telescope find_files<cr>')
-map('n', '<leader>fg', ':Telescope live_grep<cr>')
-map('n', '<leader>fb', ':Telescope buffers<cr>')
-map('n', '<leader>fh', ':Telescope help_tags<cr>')
+map('n', '<leader>ff', ':Telescope find_files<CR>')
+map('n', '<leader>fg', ':Telescope live_grep<CR>')
+map('n', '<leader>fb', ':Telescope buffers<CR>')
+map('n', '<leader>fh', ':Telescope help_tags<CR>')
 
 -- which-key
 require('whichkey_setup').config{
@@ -124,6 +126,9 @@ g.terraform_fmt_on_save = 1
 -- comments
 require('kommentary.config').use_extended_mappings()
 
--- lightbulb
-cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
-
+-- saga
+local saga = require('lspsaga')
+saga.init_lsp_saga()
+-- saga mappings
+map('n', '<silent><leader>ca', ':Lspsaga code_action<CR>')
+map('v', '<silent><leader>ca', ':<C-U>Lspsaga range_code_action<CR>')
