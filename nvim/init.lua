@@ -20,6 +20,7 @@ require('plugins')
 
 -- main configuration
 opt.termguicolors = true
+g.neon_style = 'dark'
 cmd 'colorscheme neon'
 -- statusline
 require('nvim-web-devicons').setup {
