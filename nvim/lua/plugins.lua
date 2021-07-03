@@ -1,7 +1,7 @@
 vim.cmd 'packadd paq-nvim'
 
-require 'paq-nvim' {
-  {'savq/paq-nvim', branch='v0.8.3'};
+require 'paq' {
+  'savq/paq-nvim';
   -- common deps
   'nvim-lua/plenary.nvim';
 
