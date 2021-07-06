@@ -32,6 +32,9 @@ require 'paq' {
   
   -- terraform
   'hashivim/vim-terraform';
+
+  -- mustache
+  'mustache/vim-mode';
   
   -- random
   'nvim-treesitter/nvim-treesitter';
