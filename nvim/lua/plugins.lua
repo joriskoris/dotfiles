@@ -9,8 +9,8 @@ require 'paq' {
   'famiu/nvim-reload';
 
   -- theme
-  {'dracula/vim', as='dracula'};
   {'rafamadriz/neon', as='neon'};
+
   -- statusline
   'hoob3rt/lualine.nvim';
   'kyazdani42/nvim-web-devicons';
@@ -18,14 +18,15 @@ require 'paq' {
   -- linting
   'dense-analysis/ale';
   
-  -- completion
+  -- lsp
   'neovim/nvim-lspconfig';
-  {'shougo/deoplete-lsp'};
-  {'shougo/deoplete.nvim', run = vim.fn['remote#host#UpdateRemotePlugins']};
-  
-  -- snippets
-  'Shougo/neosnippet.vim';
-  'Shougo/neosnippet-snippets';
+  'glepnir/lspsaga.nvim';
+
+  -- treesitter
+  'nvim-treesitter/nvim-treesitter';
+
+  -- completion
+  'nvim-lua/completion-nvim';
   
   -- golang
   'fatih/vim-go';
@@ -36,21 +37,16 @@ require 'paq' {
   -- mustache
   'mustache/vim-mode';
   
-  -- random
-  'nvim-treesitter/nvim-treesitter';
-  
   -- fuzzy search
   'nvim-lua/popup.nvim';
   'nvim-telescope/telescope.nvim';
   
-  -- random
+  -- Random --
+  -- which-key
   'folke/which-key.nvim';
   'AckslD/nvim-whichkey-setup.lua';
-  'glepnir/lspsaga.nvim';
-
   -- comments
   'b3nj5m1n/kommentary';
-
   -- get better at vim
   'ThePrimeagen/vim-be-good'
 }
