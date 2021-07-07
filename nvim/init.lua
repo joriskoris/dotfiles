@@ -31,6 +31,9 @@ opt.shiftwidth = 2
 opt.wrap = true
 opt.sidescrolloff = 8
 
+-- python host
+g.python3_host_prog = '~/.pyenv/versions/neovim/bin/python'
+
 -- vim-go
 g.go_code_completion_enabled = 1
 
