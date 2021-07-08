@@ -10,6 +10,7 @@ require 'paq' {
 
   -- theme
   {'rafamadriz/neon', as='neon'};
+  {'yashguptaz/calvera-dark.nvim'};
 
   -- statusline
   'hoob3rt/lualine.nvim';
@@ -44,7 +45,6 @@ require 'paq' {
   -- Random --
   -- which-key
   'folke/which-key.nvim';
-  'AckslD/nvim-whichkey-setup.lua';
   -- comments
   'b3nj5m1n/kommentary';
   -- get better at vim

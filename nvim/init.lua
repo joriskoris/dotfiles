@@ -6,11 +6,11 @@ local opt = vim.opt  -- to set options
 -- requires
 require'plugins'
 require'keybindings'
+require'lsp'
 
 -- main configuration
 opt.termguicolors = true
-g.neon_style = 'doom'
-cmd 'colorscheme neon'
+require'calvera'.set()
 
 -- statusline
 require'nvim-web-devicons'.setup {
@@ -18,7 +18,7 @@ require'nvim-web-devicons'.setup {
 }
 require'lualine'.setup {
   options = {
-    theme = 'neon'
+    theme = 'material-nvim'
   }
 }
 
@@ -44,25 +44,7 @@ g.terraform_fmt_on_save = 1
 -- completion settings
 opt.completeopt=[[menuone,noinsert,noselect]]
 opt.shortmess:append {c = true}
-
--- lsp
-local lspconfig = require'lspconfig'
-lspconfig.gopls.setup {
-  on_attach = require'completion'.on_attach,
-  cmd = {'gopls', 'serve'},
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-    },
-  }
-}
-
--- lsp saga
-local saga = require'lspsaga'
-saga.init_lsp_saga()
+g.completion_confirm_key = "<C-k>"
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {
@@ -76,12 +58,5 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- which-key
-require'whichkey_setup'.config{
-  hide_statusline = false,
-  default_keymap_settings = {
-    silent=true,
-    noremap=true,
-  },
-  default_mode = 'n',
-}
+require'which-key'.setup {}
 
