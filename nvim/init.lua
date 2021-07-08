@@ -18,7 +18,7 @@ require'nvim-web-devicons'.setup {
 }
 require'lualine'.setup {
   options = {
-    theme = 'material-nvim'
+    theme = 'calvera-nvim'
   }
 }
 
