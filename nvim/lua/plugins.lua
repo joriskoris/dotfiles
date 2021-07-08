@@ -18,7 +18,7 @@ require 'paq' {
 
   -- linting
   'dense-analysis/ale';
-  
+
   -- lsp
   'neovim/nvim-lspconfig';
   'glepnir/lspsaga.nvim';
@@ -28,20 +28,23 @@ require 'paq' {
 
   -- completion
   'nvim-lua/completion-nvim';
-  
+
+  -- snippets
+   'norcalli/snippets.nvim';
+
   -- golang
   'fatih/vim-go';
-  
+
   -- terraform
   'hashivim/vim-terraform';
 
   -- mustache
   'mustache/vim-mode';
-  
+
   -- fuzzy search
   'nvim-lua/popup.nvim';
   'nvim-telescope/telescope.nvim';
-  
+
   -- Random --
   -- which-key
   'folke/which-key.nvim';

@@ -45,6 +45,7 @@ g.terraform_fmt_on_save = 1
 opt.completeopt=[[menuone,noinsert,noselect]]
 opt.shortmess:append {c = true}
 g.completion_confirm_key = "<C-k>"
+g.completion_enable_snippet = 'snippets.nvim'
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {
@@ -56,6 +57,9 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   }
 }
+
+-- snippets
+require'snippets'.use_suggested_mappings()
 
 -- which-key
 require'which-key'.setup {}
