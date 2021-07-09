@@ -1,0 +1,28 @@
+export EDITOR=nvim
+
+# golang
+export GOPATH=$HOME/go
+export PATH=$(go env GOPATH)/bin:$PATH
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# krew (kubectl)
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# luarocks
+export PATH="$HOME/.luarocks/bin:$PATH"
+
+
+# completions that are not in completions folder (/etc/bash_completion.d/*)
+complete -C /usr/bin/terraform terraform
