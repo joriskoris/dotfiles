@@ -24,7 +24,7 @@ require 'paq' {
   'glepnir/lspsaga.nvim';
 
   -- treesitter
-  'nvim-treesitter/nvim-treesitter';
+  {'nvim-treesitter/nvim-treesitter', run=function() vim.cmd 'TSUpdate' end};
 
   -- completion
   'nvim-lua/completion-nvim';
@@ -35,11 +35,17 @@ require 'paq' {
   -- golang
   'fatih/vim-go';
 
+  -- starlark
+  'cappyzawa/starlark.vim';
+
   -- terraform
   'hashivim/vim-terraform';
 
   -- mustache
   'mustache/vim-mode';
+
+  -- markdown
+  {'npxbr/glow.nvim', run=function() vim.cmd('GlowInstall') end};
 
   -- fuzzy search
   'nvim-lua/popup.nvim';
