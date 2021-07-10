@@ -23,6 +23,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # luarocks
 export PATH="$HOME/.luarocks/bin:$PATH"
 
+[ -f "/home/joris/.ghcup/env" ] && source "/home/joris/.ghcup/env" # ghcup-env
 
 # completions that are not in completions folder (/etc/bash_completion.d/*)
 complete -C /usr/bin/terraform terraform
