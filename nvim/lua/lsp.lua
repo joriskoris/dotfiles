@@ -69,3 +69,8 @@ require'lspconfig'.gopls.setup {
 require'lspconfig'.bashls.setup {
   on_attach = require'completion'.on_attach,
 }
+
+-- haskell
+require'lspconfig'.hls.setup {
+  on_attach = require'completion'.on_attach,
+}
