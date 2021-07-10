@@ -1,5 +1,8 @@
 export EDITOR=nvim
 
+# python
+export PATH="$HOME/.local/bin:$HOME"
+
 # golang
 export GOPATH=$HOME/go
 export PATH=$(go env GOPATH)/bin:$PATH
