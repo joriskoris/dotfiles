@@ -74,3 +74,8 @@ require'lspconfig'.bashls.setup {
 require'lspconfig'.hls.setup {
   on_attach = require'completion'.on_attach,
 }
+
+-- python
+require'lspconfig'.pyls.setup {
+  on_attach = require'completion'.on_attach,
+}

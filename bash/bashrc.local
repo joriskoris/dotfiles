@@ -1,7 +1,7 @@
 export EDITOR=nvim
 
 # python
-export PATH="$HOME/.local/bin:$HOME"
+export PATH="$HOME/.local/bin:$PATH"
 
 # golang
 export GOPATH=$HOME/go
@@ -19,6 +19,11 @@ eval "$(pyenv init --path)"
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# custom scripts be here
+if [[ -d "$HOME/.custom_scripts" ]]; then
+  export PATH="$HOME/.custom_scripts:$PATH"
+fi
 
 # krew (kubectl)
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
