@@ -11,6 +11,8 @@ local servers = {
   eslint = {},
   ruff = {},
   basedpyright = {},
+  yamlls = {},
+  dockerls = {},
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 
