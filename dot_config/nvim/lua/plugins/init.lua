@@ -38,6 +38,36 @@ return {
   },
   {
     "ggandor/leap.nvim",
+    event = "BufEnter",
+    config = function()
+      local leap = require "leap"
+      leap.opts.safe_labels = {}
+      leap.create_default_mappings()
+
+      vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
+      vim.api.nvim_set_hl(0, "LeapMatch", {
+        fg = "white",
+        bold = true,
+        nocombine = true,
+      })
+    end,
+  },
+  -- folds
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = {
+      "kevinhwang91/promise-async",
+    },
+    opts = {
+      provider_selector = function()
+        return { "treesitter", "indent" }
+      end,
+    },
+  },
+  -- smooth scrolling
+  {
+    "karb94/neoscroll.nvim",
+    event = "BufEnter",
     opts = {},
   },
 }
