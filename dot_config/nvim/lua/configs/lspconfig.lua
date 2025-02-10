@@ -13,6 +13,8 @@ local servers = {
   basedpyright = {},
   yamlls = {},
   dockerls = {},
+  tailwindcss = {},
+  marksman = {},
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 
