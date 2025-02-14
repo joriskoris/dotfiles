@@ -70,4 +70,19 @@ return {
     event = "BufEnter",
     opts = {},
   },
+  -- ai shit
+  {
+    "yetone/avante.nvim",
+    build = "make",
+    event = "VeryLazy",
+    dependencies = {
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("avante_lib").load()
+      require("avante").setup {}
+    end,
+  },
 }
