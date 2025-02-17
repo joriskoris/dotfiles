@@ -17,3 +17,10 @@ prompt pure
 bindkey -v
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+export_secrets ()
+{
+  # for use with avante.nvim
+  export ANTHROPIC_API_KEY=$(pass claude/avante.nvim)
+}
+
