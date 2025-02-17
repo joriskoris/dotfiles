@@ -64,13 +64,6 @@ return {
       end,
     },
   },
-  -- smooth scrolling
-  {
-    "karb94/neoscroll.nvim",
-    event = "BufEnter",
-    opts = {},
-  },
-  -- ai shit
   {
     "yetone/avante.nvim",
     build = "make",
