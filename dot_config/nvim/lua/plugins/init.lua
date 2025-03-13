@@ -31,6 +31,17 @@ return {
     cmd = "Trouble",
   },
   {
+    "folke/neoconf.nvim",
+  },
+  {
+    "towolf/vim-helm",
+    ft = "helm",
+  },
+  {
+    "NoahTheDuke/vim-just",
+    ft = { "just" },
+  },
+  {
     "tris203/precognition.nvim",
     opts = {},
   },

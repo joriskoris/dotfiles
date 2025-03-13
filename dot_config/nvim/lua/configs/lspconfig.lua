@@ -1,17 +1,38 @@
--- load defaults i.e lua_lsp
+require("neoconf").setup {}
+
 require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
 
--- EXAMPLE
 local servers = {
+  bashls = {},
   html = {},
   cssls = {},
   ts_ls = {},
   eslint = {},
   ruff = {},
   basedpyright = {},
-  yamlls = {},
+  tilt_ls = {},
+  helm_ls = {
+    yamlls = {
+      path = "yaml-language-server",
+    },
+  },
+  yamlls = {
+    settings = {
+      yaml = {
+        completion = true,
+        validate = true,
+        format = { enable = true },
+        schemaStore = {
+          enable = true,
+          url = "https://www.schemastore.org/api/json/catalog.json",
+        },
+        schemaDownload = { enable = true },
+        schemas = {},
+      },
+    },
+  },
   dockerls = {},
   tailwindcss = {},
   marksman = {},

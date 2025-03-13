@@ -24,5 +24,3 @@ map("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
 map("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
 map("n", "zr", require("ufo").openFoldsExceptKinds, { desc = "Open folds except kinds" })
 map("n", "zm", require("ufo").closeFoldsWith, { desc = "Close folds with" })
-
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
