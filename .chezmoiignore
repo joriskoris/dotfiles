@@ -1,0 +1,11 @@
+README.md
+
+
+**/.github/
+**/.github/**
+
+**/.git/
+**/.git/**
+**/.gitignore
+!.config/nvim/.gitignore
+

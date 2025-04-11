@@ -1,0 +1,7 @@
+#
+# ~/.bash_profile
+
+[[ -f ~/.zshrc ]] && . ~/.zshrc
+
+[[ "$PATH" == *"$HOME/bin:"* ]] || export PATH="$HOME/bin:$PATH"
+! { which werf | grep -qsE "^/home/joris/.trdl/"; } && [[ -x "$HOME/bin/trdl" ]] && source $("$HOME/bin/trdl" use werf "2" "stable")
