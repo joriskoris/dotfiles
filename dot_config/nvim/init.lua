@@ -87,6 +87,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   'tpope/vim-sleuth',
+  {"akinsho/toggleterm.nvim", config = function ()
+    require("toggleterm").setup()
+  end},
   {
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -481,11 +484,13 @@ require('lazy').setup({
         basedpyright = {},
         bashls = {},
         dockerls = {},
+        eslint = {},
         docker_compose_language_service = {},
         ts_ls = {},
         tilt = {},
         helm_ls = {},
         yamlls = {},
+        rust_analyzer = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -552,20 +557,22 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
-        if disable_filetypes[vim.bo[bufnr].filetype] then
-          return nil
-        else
-          return {
-            timeout_ms = 500,
-            lsp_format = 'fallback',
-          }
-        end
+        return nil
+        -- local disable_filetypes = { c = true, cpp = true }
+        -- if disable_filetypes[vim.bo[bufnr].filetype] then
+        --   return nil
+        -- else
+        --   return {
+        --     timeout_ms = 500,
+        --     lsp_format = 'fallback',
+        --   }
+        -- end
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'ruff_format', 'ruff_fix', 'ruff_organize_imports' },
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
