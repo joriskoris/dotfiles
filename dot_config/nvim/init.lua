@@ -491,6 +491,7 @@ require('lazy').setup({
         helm_ls = {},
         yamlls = {},
         rust_analyzer = {},
+        tailwindcss = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
