@@ -38,6 +38,8 @@ return {
       })
 
       local servers = {
+        docker_compose_language_service = {},
+        dockerls = {},
         lua_ls = {},
         bashls = {},
       }
