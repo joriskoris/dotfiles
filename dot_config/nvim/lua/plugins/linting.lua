@@ -8,7 +8,6 @@ return {
     local lint = require("lint")
     lint.linters_by_ft = {
       markdown = { "markdownlint" },
-      javascript = { "eslint_d" },
     }
 
     -- Create autocommand which carries out the actual linting
