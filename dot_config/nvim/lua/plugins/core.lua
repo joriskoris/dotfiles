@@ -36,19 +36,18 @@ return {
     end,
     priority = 1000,
   },
-  -- filetree
+  -- neovim tree
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-    },
-    lazy = false,
+    "nvim-tree/nvim-tree.lua",
+    config = function ()
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+
+      require("nvim-tree").setup();
+    end,
     keys = {
-      { "<leader>\\", ":Neotree toggle<CR>", desc = "NeoTree toggle", silent = true },
+      { "<leader>\\", ":NvimTreeToggle<CR>", desc = "NvimTree oggle", silent = true },
     },
-    opts = {},
   },
   -- autopairs
   {
@@ -68,4 +67,8 @@ return {
       { "<leader>pt", ":Precognition toggle<CR>", desc = "Precognition toggle", silent = true },
     },
   },
+  -- git things
+  {
+    "lewis6991/gitsigns.nvim",
+  }
 }

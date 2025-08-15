@@ -17,7 +17,8 @@ return {
     format_on_save = nil,
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "ruff_fix", "ruff_format", "ruff_organize_imports" }
+      python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+      javascript = { "eslint_d" }
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
