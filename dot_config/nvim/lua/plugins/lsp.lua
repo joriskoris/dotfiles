@@ -45,22 +45,48 @@ return {
         lua_ls = {},
         bashls = {},
         eslint = {},
+        rust_analyzer = {},
+        yamlls = {
+          settings = {
+            redhat = {
+              telemetry = {
+                enabled = false,
+              },
+            },
+            yaml = {
+              validate = true,
+              format = {
+                enable = true,
+              },
+              schemas = {
+                kubernetes = "*.k8s.yaml",
+                ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks"] = "roles/tasks/*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] = "*play*.{yml,yaml}",
+                ["https://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+                ["https://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+                ["https://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+                ["https://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+                ["https://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+                ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
+                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
+              },
+            },
+          },
+        },
+        stylua = {},
       }
       local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        "stylua",
-      })
-
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+
+      -- iterate over the list of servers, and call `vim.lsp.config(name, settings)` for each setting
+      for server_name, config in pairs(servers) do
+        vim.lsp.config(server_name, config)
+      end
+
       require("mason-lspconfig").setup({
         ensure_installed = {},
-        auto_enable = true,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            require("lspconfig")[server_name].setup(server)
-          end,
-        },
+        automatic_enable = true,
       })
     end,
   },
