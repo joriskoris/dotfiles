@@ -1,3 +1,5 @@
+local js_formatters = { "prettier", "eslint_d" }
+
 return {
   "stevearc/conform.nvim",
   event = { "BufWritePre" },
@@ -18,12 +20,11 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
-      javascript = { "eslint_d" }
-      -- Conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
-      --
-      -- You can use 'stop_after_first' to run the first available formatter from the list
-      -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      javascript = js_formatters,
+      typescript = js_formatters,
+      javascriptreact = js_formatters,
+      typescriptreact = js_formatters,
+      css = { "prettier" },
     },
   },
 }

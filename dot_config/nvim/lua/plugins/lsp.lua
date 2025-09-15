@@ -75,6 +75,12 @@ return {
           },
         },
         stylua = {},
+        tofu_ls = {
+          cmd = { "tofu-ls", "serve" },
+          filetypes = { "terraform", "terraform-vars" },
+          root_markers = { ".terraform", ".git" },
+        },
+        tailwindcss = {},
       }
       local ensure_installed = vim.tbl_keys(servers or {})
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
