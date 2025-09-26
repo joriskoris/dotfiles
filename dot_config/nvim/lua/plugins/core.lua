@@ -30,20 +30,38 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    config = function()
-      vim.o.background = "light"
-      vim.cmd("colorscheme rose-pine")
-    end,
     priority = 1000,
+    config = function()
+      local function sync_theme()
+        local handle = io.popen(
+          "osascript -e 'tell app \"System Events\" to tell appearance preferences to get dark mode' 2>/dev/null"
+        )
+        if handle then
+          local result = handle:read("*a"):gsub("%s+", "")
+          handle:close()
+          vim.o.background = (result == "true") and "dark" or "light"
+        end
+      end
+
+      -- Set initial theme
+      sync_theme()
+      vim.cmd("colorscheme rose-pine")
+
+      -- Poll every 500ms - fuck it, it works
+      local timer = vim.uv.new_timer()
+      timer:start(0, 500, function()
+        vim.schedule(sync_theme)
+      end)
+    end,
   },
   -- neovim tree
   {
     "nvim-tree/nvim-tree.lua",
-    config = function ()
+    config = function()
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
 
-      require("nvim-tree").setup();
+      require("nvim-tree").setup()
     end,
     keys = {
       { "<leader>\\", ":NvimTreeToggle<CR>", desc = "NvimTree oggle", silent = true },
@@ -70,5 +88,5 @@ return {
   -- git things
   {
     "lewis6991/gitsigns.nvim",
-  }
+  },
 }

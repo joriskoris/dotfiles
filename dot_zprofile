@@ -3,5 +3,7 @@
 
 [[ -f ~/.zshrc ]] && . ~/.zshrc
 
+[[ "$PATH" == *"$HOME/.local/bin:"* ]] || export PATH="$HOME/.local/bin:$PATH"
+
 [[ "$PATH" == *"$HOME/bin:"* ]] || export PATH="$HOME/bin:$PATH"
 ! { which werf | grep -qsE "^$HOME/.trdl/"; } && [[ -x "$HOME/bin/trdl" ]] && source $("$HOME/bin/trdl" use --no-self-update werf "2" "stable")
