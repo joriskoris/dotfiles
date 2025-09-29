@@ -89,4 +89,9 @@ return {
   {
     "lewis6991/gitsigns.nvim",
   },
+  -- css colors
+  {
+    "brenoprata10/nvim-highlight-colors",
+    opts = {},
+  }
 }
