@@ -38,6 +38,7 @@ return {
       })
 
       local servers = {
+        ts_ls = false, -- disabled in favor of typescript-tools
         basedpyright = {},
         ruff = {},
         docker_compose_language_service = {},
