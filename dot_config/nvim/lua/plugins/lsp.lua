@@ -1,5 +1,10 @@
 return {
   {
+    "qvalentin/helm-ls.nvim",
+    ft = "helm",
+    opts = {},
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
@@ -11,11 +16,6 @@ return {
       -- Useful status updates for LSP.
       {
         "j-hui/fidget.nvim",
-        opts = {},
-      },
-      {
-        "qvalentin/helm-ls.nvim",
-        ft = "helm",
         opts = {},
       },
     },
