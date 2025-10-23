@@ -5,6 +5,25 @@ eval $(/opt/homebrew/bin/brew shellenv)
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load
 
+
+if command -v bat &> /dev/null; then
+    alias cat='bat'
+fi
+
+if command -v eza &> /dev/null; then
+    alias ls='eza'
+    alias l='eza -lbF --git'
+    alias ll='eza -lbGF --git'
+    alias llm='eza -lbGd --git --sort=modified'
+    alias la='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'
+    alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale'
+
+    # specialty views
+    alias lS='eza -1'
+    alias lt='eza --tree --level=2'
+    alias l.="eza -a | grep -E '^\.'"
+fi
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
     [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm

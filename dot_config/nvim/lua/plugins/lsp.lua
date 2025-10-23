@@ -13,6 +13,11 @@ return {
         "j-hui/fidget.nvim",
         opts = {},
       },
+      {
+        "qvalentin/helm-ls.nvim",
+        ft = "helm",
+        opts = {},
+      },
     },
     config = function()
       -- LSP keybindings when attaching to a buffer
@@ -46,6 +51,7 @@ return {
         bashls = {},
         eslint = {},
         rust_analyzer = {},
+        helm_ls = {},
         yamlls = {
           settings = {
             redhat = {
@@ -92,7 +98,7 @@ return {
 
       require("mason-lspconfig").setup({
         ensure_installed = {},
-        automatic_enable = false,
+        automatic_enable = true,
       })
     end,
   },
