@@ -1,10 +1,19 @@
 export EDITOR=nvim
+
+# Load nvm BEFORE Homebrew to ensure nvm's node takes precedence
+export NVM_DIR="$HOME/.nvm"
+# Use direct path to nvm since brew isn't loaded yet
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+
+# Now load Homebrew (after nvm)
 eval $(/opt/homebrew/bin/brew shellenv)
 
 # antidote zsh plugin manager
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load
 
+eval "$(starship init zsh)"
 
 if command -v bat &> /dev/null; then
     alias cat='bat'
@@ -24,17 +33,33 @@ if command -v eza &> /dev/null; then
     alias l.="eza -a | grep -E '^\.'"
 fi
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
-    [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
+# Serena agent alias
+alias serena="uvx --from git+https://github.com/oraios/serena serena"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
-eval "$(starship init zsh)"
+# Fix PATH to ensure nvm's node always takes precedence over Homebrew's
+# This removes Homebrew's node/npm/npx from PATH and ensures nvm's version is first
+fix_nvm_path() {
+    # Remove any Homebrew node/npm/npx from PATH
+    export PATH=$(echo "$PATH" | tr ':' '\n' | grep -v "/opt/homebrew/bin$" | tr '\n' ':' | sed 's/:$//')
+    # Re-add Homebrew but at the end
+    export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin"
+    # If nvm is loaded and has a current version, ensure it's at the front
+    if command -v nvm &> /dev/null; then
+        local nvm_bin
+        nvm_bin=$(nvm which current 2>/dev/null | xargs dirname 2>/dev/null)
+        if [ -n "$nvm_bin" ] && [ "$nvm_bin" != "." ] && [[ "$nvm_bin" != *"homebrew"* ]]; then
+            export PATH="$nvm_bin:$PATH"
+        fi
+    fi
+}
+
+# Apply the fix after everything is loaded
+fix_nvm_path
 
 secrets ()
 {

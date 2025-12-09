@@ -13,6 +13,7 @@ return {
       },
       "mason-org/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "b0o/schemastore.nvim",
       -- Useful status updates for LSP.
       {
         "j-hui/fidget.nvim",
@@ -52,6 +53,12 @@ return {
         eslint = {},
         rust_analyzer = {},
         helm_ls = {},
+        jsonls = {
+          settings = {
+            schemas = require("schemastore").json.schemas(), -- Integrates with SchemaStore.nvim for common schemas
+            validate = { enable = true },
+          },
+        },
         yamlls = {
           settings = {
             redhat = {
