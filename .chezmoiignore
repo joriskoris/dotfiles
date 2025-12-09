@@ -7,5 +7,9 @@ README.md
 **/.git/
 **/.git/**
 **/.gitignore
+
+.config/nvim/lazy-lock.json
+
+!.config/nvim/.gitignore
 !.config/nvim/.gitignore
 
