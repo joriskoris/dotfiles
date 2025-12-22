@@ -40,6 +40,12 @@ alias serena="uvx --from git+https://github.com/oraios/serena serena"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
+eval "$(pyenv virtualenv-init -)"
+
+
+# ansible issues on macos fix
+export no_proxy="*"
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # Fix PATH to ensure nvm's node always takes precedence over Homebrew's
 # This removes Homebrew's node/npm/npx from PATH and ensures nvm's version is first
