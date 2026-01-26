@@ -1,74 +1,46 @@
-export EDITOR=nvim
-
-# Load nvm BEFORE Homebrew to ensure nvm's node takes precedence
-export NVM_DIR="$HOME/.nvm"
-# Use direct path to nvm since brew isn't loaded yet
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-
-# Now load Homebrew (after nvm)
-eval $(/opt/homebrew/bin/brew shellenv)
+HOMEBREW_PREFIX=$(brew --prefix)
 
 # antidote zsh plugin manager
-source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+source $HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh
 antidote load
-
 eval "$(starship init zsh)"
 
+# aliases
 if command -v bat &> /dev/null; then
     alias cat='bat'
 fi
-
 if command -v eza &> /dev/null; then
-    alias ls='eza'
-    alias l='eza -lbF --git'
-    alias ll='eza -lbGF --git'
-    alias llm='eza -lbGd --git --sort=modified'
-    alias la='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'
-    alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale'
-
-    # specialty views
-    alias lS='eza -1'
-    alias lt='eza --tree --level=2'
-    alias l.="eza -a | grep -E '^\.'"
+  alias ls='eza'
+  alias l='eza -lbF --git'
+  alias ll='eza -lbGF --git'
+  alias llm='eza -lbGd --git --sort=modified'
+  alias la='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'
+  alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale'
+  alias lS='eza -1'
+  alias lt='eza --tree --level=2'
+  alias l.="eza -a | grep -E '^\.'"
 fi
 
-# Serena agent alias
-alias serena="uvx --from git+https://github.com/oraios/serena serena"
+# lazy load nvm
+lazy_load_nvm() {
+  unset -f nvm node npm npx
+  [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
+  [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
+}
+nvm() { lazy_load_nvm && nvm "$@"; }
+node() { lazy_load_nvm && node "$@"; }
+npm() { lazy_load_nvm && npm "$@"; }
+npx() { lazy_load_nvm && npx "$@"; }
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-eval "$(pyenv virtualenv-init -)"
-
-
-# ansible issues on macos fix
-export no_proxy="*"
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-# Fix PATH to ensure nvm's node always takes precedence over Homebrew's
-# This removes Homebrew's node/npm/npx from PATH and ensures nvm's version is first
-fix_nvm_path() {
-    # Remove any Homebrew node/npm/npx from PATH
-    export PATH=$(echo "$PATH" | tr ':' '\n' | grep -v "/opt/homebrew/bin$" | tr '\n' ':' | sed 's/:$//')
-    # Re-add Homebrew but at the end
-    export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin"
-    # If nvm is loaded and has a current version, ensure it's at the front
-    if command -v nvm &> /dev/null; then
-        local nvm_bin
-        nvm_bin=$(nvm which current 2>/dev/null | xargs dirname 2>/dev/null)
-        if [ -n "$nvm_bin" ] && [ "$nvm_bin" != "." ] && [[ "$nvm_bin" != *"homebrew"* ]]; then
-            export PATH="$nvm_bin:$PATH"
-        fi
-    fi
+# lazy load pyenv
+lazy_load_pyenv() {
+  unset -f pyenv python python3 pip pip3
+  eval "$($HOMEBREW_PREFIX/bin/pyenv init - zsh)"
+  eval "$($HOMEBREW_PREFIX/bin/pyenv virtualenv-init -)"
 }
 
-# Apply the fix after everything is loaded
-fix_nvm_path
-
-secrets ()
-{
-    export DIGITALOCEAN_TOKEN=$(pass do/default)
-    export CLOUDFLARE_API_TOKEN=$(pass cloudflare/default)
-}
+pyenv() { lazy_load_pyenv && pyenv "$@"; }
+python() { lazy_load_pyenv && python "$@"; }
+python3() { lazy_load_pyenv && python3 "$@"; }
+pip() { lazy_load_pyenv && pip "$@"; }
+pip3() { lazy_load_pyenv && pip3 "$@"; }
