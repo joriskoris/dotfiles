@@ -21,16 +21,8 @@ if command -v eza &> /dev/null; then
   alias l.="eza -a | grep -E '^\.'"
 fi
 
-# lazy load nvm
-lazy_load_nvm() {
-  unset -f nvm node npm npx
-  [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
-  [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
-}
-nvm() { lazy_load_nvm && nvm "$@"; }
-node() { lazy_load_nvm && node "$@"; }
-npm() { lazy_load_nvm && npm "$@"; }
-npx() { lazy_load_nvm && npx "$@"; }
+[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
+[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
 
 # lazy load pyenv
 lazy_load_pyenv() {
