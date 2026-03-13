@@ -36,3 +36,5 @@ python() { lazy_load_pyenv && python "$@"; }
 python3() { lazy_load_pyenv && python3 "$@"; }
 pip() { lazy_load_pyenv && pip "$@"; }
 pip3() { lazy_load_pyenv && pip3 "$@"; }
+
+source $HOME/.cargo/env
