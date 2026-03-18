@@ -16,5 +16,9 @@ vim.lsp.config("eslint", {
   },
 })
 
+vim.lsp.config("htmx", {
+  filetypes = { "html" },
+})
+
 local servers = { "lua_ls", "vtsls", "bashls", "eslint", "terraformls", "html", "htmx", "tailwindcss" }
 vim.lsp.enable(servers)
